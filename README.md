@@ -72,8 +72,7 @@ my_project/
 1. **Clone the Repository**: 
     - Use the following command to clone this repository and set it up on your local machine:
     ```bash
-    git clone https://github.com/yourusername/yourrepository.git
-    ```
+    git clone https://github.com/Adesco22/365-Platform-Analysis.git
 
 2. **Run SQL Queries**: 
     - Open your SQL environment (e.g., MySQL, PostgreSQL, or another SQL client).
