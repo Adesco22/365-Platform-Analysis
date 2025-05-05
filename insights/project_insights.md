@@ -1,9 +1,33 @@
 
-# Project Insights: 365DataScience Platform Analysis
+# Project Analysis and Insights: 365DataScience Platform Analysis
 
+An sql query for materialized views was created for a student engagement summary table for extracting key metrics and insight as shown below 
+```csv
+student_id	date_registered	first_date_watched	first_date_purchased	days_diff_reg_watch	days_diff_watch_purch
+255193	2021-12-01	2021-12-01	NULL	0	NULL
+255194	2021-12-01	2021-12-01	NULL	0	NULL
+255198	2021-12-01	2022-02-17	NULL	78	NULL
+255199	2021-12-01	2021-12-01	NULL	0	NULL
+255200	2021-12-01	2021-12-01	NULL	0	NULL
+255202	2021-12-01	2021-12-01	NULL	0	NULL
+255203	2021-12-01	2021-12-01	2021-12-01	0	0
+255204	2021-12-01	2021-12-01	2021-12-01	0	0
+255205	2021-12-01	2021-12-01	NULL	0	NULL
+255206	2021-12-01	2021-12-01	2021-12-02	0	1
+255207	2021-12-01	2021-12-01	2021-12-01	0	0
+255209	2021-12-01	2021-12-01	NULL	0	NULL
+255211	2021-12-01	2021-12-02	NULL	1	NULL
+255215	2021-12-01	2021-12-30	NULL	29	NULL
+255218	2021-12-01	2021-12-01	2021-12-01	0	0
+```
+
+The following are the common metri s that are analyzed and obtained some insight 
 ## 1. Free-to-Paid Conversion Rate
 
-### SQL Query
+### Analysis
+The free-to-paid conversion rate measures the proportion of students who watched a lecture and subsequently purchased a subscription.
+**Conversion Rate**: **11%**
+#### SQL Query
 ```sql
 SELECT 
     ROUND((COUNT(DISTINCT CASE 
@@ -13,16 +37,11 @@ SELECT
 FROM  student_engagement_purchase_summary;
 ```
 
-### Result Output
+#### Result Output
 ```csv
 conversion_rate
 11.29
 ```
-
-### Analysis
-The free-to-paid conversion rate measures the proportion of students who watched a lecture and subsequently purchased a subscription.
-
-**Conversion Rate**: **11%**
 
 ### Insights
 - The platform successfully converts 11% of engaged students into paying customers.
@@ -33,21 +52,21 @@ The free-to-paid conversion rate measures the proportion of students who watched
 
 ## 2. Average Duration Between Registration and First-Time Engagement
 
-### SQL Query
-```sql
--- first_engagement_query.sql
--- Add your SQL query here that calculates the duration from registration to first watch
-```
-
-### Result Output
-```csv
--- average_duration_results.csv
--- metric, value
--- average_days_to_engage, 3.42
-```
-
 ### Analysis
 On average, it takes a student **3.42 days** to watch their first lecture after registering on the platform.
+
+#### SQL Query
+```sql
+SELECT 
+    ROUND(AVG(DATEDIFF(first_date_watched, date_registered)), 2) AS av_reg_watch 
+FROM 
+    student_engagement_purchase_summary;
+```
+#### Result Output
+```csv
+av_reg_watch
+3.42
+```
 
 ### Insights
 - A delay of more than 3 days before engagement may indicate onboarding friction.
@@ -58,16 +77,18 @@ On average, it takes a student **3.42 days** to watch their first lecture after 
 ## 3. Average Duration Between First-Time Engagement and First-Time Purchase
 
 ### SQL Query
-```sql
--- average_duration_query.sql
--- Add your SQL query here that calculates the duration from first watch to first purchase
+SELECT 
+    ROUND(AVG(DATEDIFF(first_date_purchased, first_date_watched)), 2) AS av_watch_purch
+FROM 
+    student_engagement_purchase_summary
+WHERE
+    first_date_purchased IS NOT NULL;
 ```
 
 ### Result Output
 ```csv
--- average_duration_results.csv
--- metric, value
--- average_days_to_purchase, 26.25
+av_watch_purch
+26.25
 ```
 
 ### Analysis
