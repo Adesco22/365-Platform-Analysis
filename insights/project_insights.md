@@ -138,4 +138,4 @@ This analysis provides actionable insights for improving platform engagement, st
 
 ---
 
-*Note: Ensure that each SQL query is saved in the `/sql_queries/` folder and each result in the `/analysis/` folder to maintain repository structure.*
+*Note: Each SQL query is saved in the `/sql_queries/` folder and each result in the `/analysis/` folder to maintain repository structure.*
