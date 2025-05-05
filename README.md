@@ -1,6 +1,5 @@
-# 365DataScience Platform Analysis
 
-## SQL Project: Calculating Free-to-Paid Conversion Rate
+## SQL Project: Data Analysis of students' learning behavior on 365datascience Platform 
 
 ### Project Overview
 This project analyzes student behavior on the 365DataScience learning platform using **MySQL**, with a primary focus on calculating the **free-to-paid conversion rate**—the proportion of students who purchase a subscription after watching a lecture.
