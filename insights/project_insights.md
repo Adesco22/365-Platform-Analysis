@@ -1,4 +1,3 @@
-
 # Project Analysis and Insights on 365DataScience Platform 
 
 An sql query for materialized views was created for a student engagement summary table for extracting key metrics and insight as shown below 
@@ -76,7 +75,6 @@ conversion_rate
 - A relatively low conversion rate might suggest room for improvement in converting interest into action.
 - Marketing strategies or content engagement tactics could be enhanced to increase this rate.
 
----
 
 ## 2. Average Duration Between Registration and First-Time Engagement
 
@@ -105,6 +103,7 @@ av_reg_watch
 ## 3. Average Duration Between First-Time Engagement and First-Time Purchase
 
 ### SQL Query
+```sql
 SELECT 
     ROUND(AVG(DATEDIFF(first_date_purchased, first_date_watched)), 2) AS av_watch_purch
 FROM 
